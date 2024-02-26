@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Chat</title>
+    <style>
+        #chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #message-input {
+            width: 80%;
+            padding: 5px;
+        }
+
+        #send-button {
+            width: 18%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat-box"></div>
+<input type="text" id="message-input" placeholder="Type your message...">
+<button id="send-button" onclick="sendMessage()">Send</button>
+
+<script>
+    var username = prompt("Please enter your username:");
+
+    function sendMessage() {
+        var messageInput = document.getElementById("message-input");
+        var chatBox = document.getElementById("chat-box");
+
+        var message = messageInput.value;
+
+        if (message.trim() !== "") {
+            var newMessage = document.createElement("p");
+            newMessage.innerText = "[" + username + "]: " + message;
+            chatBox.appendChild(newMessage);
+
+            // Clear the input field after sending the message
+            messageInput.value = "";
+
+            // Scroll to the bottom of the chat box to show the latest message
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    }
+</script>
+
+</body>
+</html>
